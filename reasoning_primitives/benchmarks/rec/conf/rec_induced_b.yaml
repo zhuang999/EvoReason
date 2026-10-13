@@ -1,0 +1,31 @@
+# Placeholder — overwritten by generate_induced_configs.py
+# Variant B: produce_ranking + induced ptools only (MuSR induced_b)
+llm:
+  model: openai/QwQ-32B
+  api_base: http://localhost:12350/v1
+  api_key: EMPTY
+  max_tokens: 4096
+  timeout: 300
+
+cachier:
+  cache_dir: llm_cache
+  enable_caching: false
+
+evaluate:
+  expt_name: rec_induced_b_placeholder
+  result_dir: results
+  entry_point: answer_question
+  record_details: true
+
+dataset:
+  split: valid
+  shuffle_seed: 42
+
+ptools:
+  react_solve:
+    method: react_pydantic
+    tools:
+      - ptools.ptools_common.produce_ranking
+  answer_question:
+    method: direct
+    fn: ptools.ptools_common.react_rank_impl

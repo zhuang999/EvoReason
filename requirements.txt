@@ -1,0 +1,37 @@
+# requirements.txt records the dependencies for training, inference, and development.
+# Versions are not locked; validate them in the target CUDA environment.
+
+# Training and data processing
+torch
+transformers
+accelerate
+deepspeed
+datasets
+numpy
+pandas>=2.0
+peft
+pyarrow>=19.0.0
+tqdm>=4.66
+matplotlib
+scipy
+packaging>=20.0
+
+# ReAct inference and primitive induction
+vllm
+openai
+smolagents
+litellm>=1.30.0
+cachier>=3.0.0
+omegaconf
+pydantic>=2.0
+pydantic-ai>=0.0.24
+pydantic-ai-litellm>=0.1.0
+typer>=0.12
+pyyaml>=6.0
+requests>=2.31
+
+# Development
+pre-commit
+
+# Required by the teacher SFT script; install after PyTorch:
+# python -m pip install flash-attn --no-build-isolation

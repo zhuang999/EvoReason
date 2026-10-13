@@ -1,0 +1,13 @@
+# Dependencies for pipeline/latent_opd/reasoning_primitives
+# Core stack mirrors reasoning-primitives-main; extras for local vLLM.
+
+litellm>=1.30.0
+cachier>=3.0.0
+pydantic>=2.0
+pydantic-ai>=0.0.24
+pydantic-ai-litellm>=0.1.0
+typer>=0.12
+pandas>=2.0
+tqdm>=4.66
+pyyaml>=6.0
+requests>=2.31

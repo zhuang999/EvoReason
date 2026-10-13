@@ -1,0 +1,52 @@
+# Phase-1 enhanced: evidence + domain-specific + extraction tools
+# Richer tool set produces more diverse ReAct traces for induction.py
+llm:
+  model: openai/QwQ-32B
+  api_bases:
+    - http://localhost:12350/v1
+    - http://localhost:12351/v1
+    - http://localhost:12352/v1
+    - http://localhost:12353/v1
+  api_key: EMPTY
+  max_tokens: 4096
+  timeout: 300
+
+cachier:
+  cache_dir: llm_cache
+  enable_caching: false
+
+pydantic:
+  request_limit: 40
+
+evaluate:
+  expt_name: rec_react_enhanced_test
+  result_dir: results
+  entry_point: answer_question
+  record_details: true
+
+dataset:
+  split: test
+  shuffle_seed: 42
+  # n: 50   # uncomment to smoke-test
+
+ptools:
+  react_solve:
+    method: react_pydantic
+    tools:
+      - ptools.ptools_common.search
+      - ptools.ptools_common.lookup
+      - ptools.ptools_common.search_memory
+      - ptools.ptools_rec_tools.search_section
+      - ptools.ptools_rec_tools.search_history
+      - ptools.ptools_rec_tools.search_collab
+      - ptools.ptools_rec_tools.count_history
+      - ptools.ptools_rec.extract_user_profile
+      - ptools.ptools_rec.extract_purchase_patterns
+      - ptools.ptools_rec.extract_collaborative_insights
+      - ptools.ptools_rec.detect_preference_contradictions
+      - ptools.ptools_rec.infer_user_intent
+      - ptools.ptools_rec.summarize_reasoning_progress
+      - ptools.ptools_common.produce_ranking
+  answer_question:
+    method: direct
+    fn: ptools.ptools_common.react_rank_impl
