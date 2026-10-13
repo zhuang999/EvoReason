@@ -393,7 +393,6 @@ Defaults are taken from the supplied README.
 
 | Parameter | Default | Description |
 |-----------|---------|-------------|
-| `num_latent` (M) | 8 | Latent token count |
 | `num_jacobi_steps` (T) | 3 | Jacobi iterations |
 | `ppo_coef` | 1.0 | PPO loss weight |
 | `opd_coef` | 1.0 | Gated OPD loss weight |
